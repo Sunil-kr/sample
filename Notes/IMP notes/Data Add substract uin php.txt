@@ -1,0 +1,11 @@
+ $Date = $row['created_at'];
+                                      // $existing_Date = date('Y-m-d ', $exist_Date);  // Converting date format
+                                      // $Date = "2010-09-17";
+                                      $temp_Date = date('Y-m-d', strtotime($Date. + $credit_period.' days'));
+
+                                      $date1 = time();
+                                      $date2 = strtotime($temp_Date);
+
+                                      $datediff = $date2 - $date1;
+
+                                      $day_left = round($datediff / (60 * 60 * 24));

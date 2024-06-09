@@ -1,0 +1,27 @@
+<script>
+    function calculate_shipping()
+
+      {
+        var state_shortkey = document.getElementById("state_shortkey").value;
+
+            // console.log(selected_option);
+            // alert(package_height);
+
+        $.ajax({
+            url:'admin/includes/calculate-shipping.php',
+            method:'POST',
+            data: {
+                // get_option:val
+                state_shortkey : state_shortkey
+          
+        },
+        success: function (response) {
+
+            $('#final_price').attr('value',response); 
+            // $('#final_price').attr('readonly','true'); 
+            // document.getElementById("price").innerHTML=response; 
+            // alert(response);
+        }
+        });
+    }
+</script>

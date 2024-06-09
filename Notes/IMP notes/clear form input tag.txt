@@ -1,0 +1,3 @@
+document.getElementById('Pincode').value = '' ;
+
+document.forms["id_form"].reset();

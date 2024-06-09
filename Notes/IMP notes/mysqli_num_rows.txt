@@ -1,0 +1,2 @@
+	
+$cart_num = mysqli_num_rows($cart_row);

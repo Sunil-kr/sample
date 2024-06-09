@@ -1,0 +1,1 @@
+   unlink($filename);  // To delete image from server or folder

@@ -1,0 +1,19 @@
+
+page1.php: 
+
+	<form class="row g-3" action="includes/function.php?id=<?= $product_edit_id ?>" enctype="multipart/form-data" method="post">
+
+
+page2.php:
+
+if(isset($_GET['id']))     // getting id from edit-product page for updation
+{
+    echo $_GET['id'];
+}
+
+
+
+
+while getting id need to $GET['variable']
+
+id=<?= $product_edit_id ?> : id is variable

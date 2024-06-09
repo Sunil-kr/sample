@@ -1,0 +1,10 @@
+    
+    // *********************************************
+    //Confirm form resubmission restrict 
+    // ********************************************
+    if ( window.history.replaceState ) {
+      window.history.replaceState( null, null, window.location.href );
+    }
+    // *********************************************
+    //Confirm form resubmission restrict 
+    // ********************************************

@@ -1,0 +1,7 @@
+
+  <select name="post_category" class="form-control" required>
+
+      	<option value=""  >Select</option>
+	<option value="hello"> hello </option>
+
+  </select>

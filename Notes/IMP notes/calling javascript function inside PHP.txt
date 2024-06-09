@@ -1,0 +1,9 @@
+  elseif($cancel_status_code == 400)       //status_code 400 == Order Alresdy Cancelled.
+                {
+                    // echo "Order has already been Cancelled.";
+                ?>
+                   <script type='text/javascript'>
+                           cancelled("<?php echo $product_order_id ?>");
+                          </script>
+                <?php
+                }

@@ -1,0 +1,85 @@
+<a class="btn btn-sm" onclick="callmodal('<?php echo $currency; ?>','<?php echo $current_rate_in_bhd; ?>',
+'<?php echo $current_details; ?>') " > <i class="bi bi-pencil-square text-success fs-5"></i></a>
+
+
+
+
+
+
+
+
+
+
+  // *******************************
+  // Add new Currency
+  // ********************************
+    $("#edit_currency").submit(function(){
+        var currency = $('#edit_currency').val();
+        var currency_rate = $('#edit_currency_rate').val();
+        var currency_detail = $('#edit_currency_detail').val();
+     
+        // alert(currency);
+
+        $.ajax({
+          method:'POST',
+          url: 'includes/ajax/ajax-setting.php',
+          data: {
+
+                edit_currency: currency,
+                edit_currency_rate: currency_rate,
+                edit_currency_detail: currency_detail,
+            
+          },
+          success: function(response){
+        
+                alert(response); 
+                // document.getElementById("desg").innerHTML=response; 
+                // console.log(response);
+
+                // if(response == 1)
+                // {
+                //   $("#success").css("display", "none");
+                // }
+                // else
+                // {
+                //   $("#failed").css("display", "block");
+                // }
+
+          }
+
+        });
+    });
+
+
+
+});   // end of $(document).ready(function(){
+
+
+
+  // *******************************
+  // Edit Currency
+  // ********************************
+
+    function callmodal(value, value1, value2)
+    {
+        var currency = value;
+        var currency_rate = value1;
+        var currency_detail = value2;
+
+        // alert(currency_detail); 
+
+        document.getElementById("edit_currency").value = currency;
+        document.getElementById("edit_currency").readOnly = true;
+        // document.getElementById("edit_currency_span").innerHTML = 'currency';
+        document.getElementById("edit_currency_span").innerHTML = currency; 
+        document.getElementById("edit_currency_rate").value = currency_rate;
+        document.getElementById("edit_currency_detail").value = currency_detail;
+
+        $('#edit_currency_modal').modal('show');
+
+        
+    }
+
+
+
+

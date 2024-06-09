@@ -1,0 +1,6 @@
+	
+  <li class="d-flex justify-content-between">
+                  
+                        <p>Total</p>
+                        <p>Total</p>
+               </li>

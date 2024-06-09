@@ -1,0 +1,42 @@
+<script>
+    function price_calculation()
+
+      {
+        var gst = document.getElementById("gst").value;
+        var product_length = document.getElementById("product_length").value;
+        var product_breadth = document.getElementById("product_breadth").value;
+        var product_height = document.getElementById("product_length").value;
+
+        var package_length = document.getElementById("package_length").value;
+        var package_breadth = document.getElementById("package_breadth").value;
+        var package_height = document.getElementById("package_height").value;
+
+            // console.log(selected_option);
+            // alert(package_height);
+
+        $.ajax({
+            url:'includes/price-calculation.php',
+            method:'POST',
+            data: {
+                // get_option:val
+                gst : gst,
+                product_length : product_length,
+                product_breadth : product_breadth,
+                product_height : product_height,
+
+                package_length : package_length,
+                package_breadth : package_breadth,
+                package_height : package_height
+
+          
+        },
+        success: function (response) {
+
+            $('#price').attr('value',response); 
+            $('#price').attr('readonly'); 
+            // document.getElementById("price").innerHTML=response; 
+            // alert(response);
+        }
+        });
+    }
+</script>

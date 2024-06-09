@@ -1,0 +1,3 @@
+                  $run_get_all_products = mysqli_query($db,"SELECT DISTINCT(order_id), payment_id FROM `orders` ");
+
+ $query="SELECT * FROM new_sales group by transaction_id";

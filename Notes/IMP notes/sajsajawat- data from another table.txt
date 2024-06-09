@@ -1,0 +1,13 @@
+ <?php 
+
+                $query="SELECT * FROM `images` WHERE `product_code` = '$product_code' ";
+
+                $run=mysqli_query($db,$query);
+
+                $res = mysqli_fetch_assoc($run);
+
+                // echo $res['image'];
+
+            ?>
+                <img class="card-img" onclick="location.href = 'product-details.php?Product_detail_Unique_Code=<?= $Product_unique_code ?>';"
+                src="admin/uploaded_images/<?= $res['image']?>" class="container-fluid " style="height:60px; width:80px; padding: 5px" >

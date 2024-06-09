@@ -1,0 +1,7 @@
+             $query = "SELECT SUM(final_selling_price) as 'sum' FROM `orders` WHERE DATE_FORMAT(`created_at`, '%Y-%m') = '$current_time'  ";
+
+                $result = mysqli_query($db, $query);
+
+                $data = mysqli_fetch_array($result);
+
+                $sum = $data['sum'];

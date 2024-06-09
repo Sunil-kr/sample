@@ -1,0 +1,56 @@
+  <div class="video-blog-accordion " onclick='myFunction()'>
+                              
+                              <h5 class="pt-3"><?php echo $row['title'] ?></h5>
+                               
+                              <div class="title" >
+                                <label class="published_on mt-3"> Published on  
+                                    <time class="post-item__meta post-item__meta--date" datetime="2022-02-14T20:24:54+00:00">
+                                      <?= date('F jS, Y',strtotime($row['created_at']))?>
+                                    </time>
+                                </label>
+                                <sub><i  class="fa fa-chevron-down text-secondary"></i></sub>
+                              </div>
+
+                            <div class="container-fluid" id='short_des' style="padding:0" >
+                              <?php
+                                  if(strlen($row['description']) > 25)
+                                    echo "<label class='card-content'>" . substr($row['description'],0,250)."....</label>";
+
+                                  else
+                                   echo "<h3>" . $row['description']. "</h3>";
+                              ?>
+
+                            </div>
+
+                            <div class="container-fluid" id="full_des" style="display: none; padding:0;">
+
+                              <label class="card-content"> <?php echo $row['description']; ?></label>
+                              <label class="card-content" > <?php echo $row['ending_lines']; ?></label>
+
+
+                            </div>
+
+                          </div>
+
+
+                          <!--------------------------------- 
+                            Script for Accordian 
+                            --------------------------------->
+                            <script>
+                              function myFunction() {
+
+                                  var x = document.getElementById('short_des');
+                                  var y = document.getElementById('full_des');
+
+                                  if (y.style.display === 'none') {
+                                    x.style.display = 'none';
+                                    y.style.display = 'block';
+                                  } 
+                                  else {
+                                    y.style.display = 'none';
+                                    x.style.display = 'block';
+                                  }
+                                                                
+                              }
+
+                            </script>

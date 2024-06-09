@@ -1,0 +1,5 @@
+$product_category = strtok($row['product_category'], '<<<');
+
+
+
+str_replace(' ', '-', ( $res['image'])

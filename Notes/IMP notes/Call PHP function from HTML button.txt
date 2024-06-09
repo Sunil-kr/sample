@@ -1,0 +1,19 @@
+ 					<div class="col-md-6 col-sm-2 col-6 ">
+                                            <form method="post">
+                                                <button type="submit" name="cancel" class="btn btn-danger btn-sm btn-block">Cancel</button>  
+                                            </form>
+                                        </div>
+
+
+
+<?php
+
+    if(isset($_POST['cancel']))
+    {
+
+        $order_placed = cancel_order_shiprocket();
+  
+
+    }
+
+?>

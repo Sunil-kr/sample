@@ -1,0 +1,1 @@
+$query="SELECT * FROM ( SELECT * FROM `cms_new_arrivals` ORDER BY id ASC LIMIT 6 ) cms_new_arrivals ORDER BY RAND() ";

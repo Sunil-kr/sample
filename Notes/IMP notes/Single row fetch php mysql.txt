@@ -1,0 +1,41 @@
+
+
+                      <?php 
+                          // echo $row['parent_category_id'];
+
+                          $parent_id = $row['parent_category_id'];
+                          $query = "SELECT * FROM `main_category` WHERE `parent_category_id`= '$parent_id' LIMIT 1";
+                          $run=mysqli_query($db,$query);
+
+                          $res = mysqli_fetch_assoc($run);
+                      ?>  
+
+                    <td><?= $res['category_name'] ?></td>
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------
+// fetching parent id wherof selected parent in form
+//--------------------------------------------------------------------------------
+
+    $GLOBALS['parent_id'] ="";          // Global variable
+
+    $query = "SELECT * FROM `main_category` WHERE `category_name` = '$parent_category_name' ";
+    
+    $run=mysqli_query($db,$query);
+
+    
+    while($res = mysqli_fetch_assoc($run)) 
+    {
+        $GLOBALS['parent_id'] = $res['id'];
+
+    }
+    
+    $parent_category_id = $GLOBALS['parent_id'];        // Assign value got from above loop and set it global variable
+
+    echo $parent_category_id ;

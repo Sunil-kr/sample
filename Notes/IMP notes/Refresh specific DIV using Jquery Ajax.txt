@@ -1,0 +1,29 @@
+
+    // -------------------------------------------------------------
+    // Ajax call to insert data in Productcart  -- add to cart 
+    // -------------------------------------------------------------
+
+    function remove_from_cart(value)
+    {
+      var removeProduct_Unique_Code = value;
+
+      // alert(removeProduct_Unique_Code);
+
+        $.ajax({ 
+            url:'includes/ajax/pos-function.php',
+            method:'POST',
+            data: {
+
+                removeProduct_Unique_Code : removeProduct_Unique_Code,
+          
+        },
+        success: function (response) {  
+
+            // alert(response);
+
+
+            $("#Product_list").load(window.location + " #Product_list");			--IMPORTANT
+           
+        }
+        });
+    }

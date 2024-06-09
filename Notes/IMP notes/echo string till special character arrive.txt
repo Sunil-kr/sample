@@ -1,0 +1,3 @@
+$mystring = 'home';
+$first = strtok($mystring, '/');
+echo $first; // home

@@ -1,0 +1,4 @@
+1. Make whole body of a website editable directly in browser:
+	- Click inspect element 
+	- go to console and type,
+	- document.body.contentEditable = true;

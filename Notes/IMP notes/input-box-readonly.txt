@@ -1,0 +1,2 @@
+
+          <input type="text" class="form-control" readonly="readonly"  name="product_categ_code"  id="inputName5" required>

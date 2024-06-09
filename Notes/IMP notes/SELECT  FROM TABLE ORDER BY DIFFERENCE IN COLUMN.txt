@@ -1,0 +1,1 @@
+$run_get_all_products = mysqli_query($db,"SELECT * FROM products ORDER BY available_quantity - alert_quantity ");

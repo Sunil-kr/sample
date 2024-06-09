@@ -1,0 +1,1 @@
+ onchange="qty_insert(this.value,'<?php echo $Product_unique_code ?>')"

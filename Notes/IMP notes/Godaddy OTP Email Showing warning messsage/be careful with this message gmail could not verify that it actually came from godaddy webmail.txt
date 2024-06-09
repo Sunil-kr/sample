@@ -1,0 +1,18 @@
+https://in.godaddy.com/help/add-an-spf-record-19218
+
+
+
+Sign in to your GoDaddy Domain Control Center. (Need help logging in? Find your username or password.)
+
+Select your domain to access the Domain Settings page.
+
+select domain
+Select Manage DNS to access your zone file.
+Select Add to add a new record.
+select add new record
+Select TXT from the Type menu options. Remember, SPF records are a type of TXT record.
+Enter the details for your SPF record:
+Name: The host name for the record. Type @ to put the SPF record on your root domain, or enter a prefix such as mail.
+Value: The SPF rule to be applied. For example, enter v=spf1 mx -all to indicate emails are allowed from your mail server and no others. SPF records must have fewer than 512 characters and only UTF-8 characters are supported.
+TTL: How long the server should cache information. The default setting is 1 hour.
+Select Add Record to save your new SPF record.

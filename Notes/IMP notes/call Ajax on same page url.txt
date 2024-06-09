@@ -1,0 +1,50 @@
+// // Ajax redirect here with POST data
+if(isset($_POST['category_id']) ){
+    
+    echo $parent_categ = $_POST['category_id'];     
+
+    // $run_get_subcateg = mysqli_query($db, "SELECT * FROM `main_category` WHERE `parent_category_id` = '$parent_categ' ");
+
+    // while($row_get_subcateg = mysqli_fetch_assoc($run_get_subcateg))
+    // {
+    //     echo $_POST['category_name'];
+    // }
+    
+    exit;	// Exit is very important to add, otherwise this will print all content defined after echo
+    }
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+        // Ajax calling here on the same page
+
+        function myfunction($value)
+        {
+            var category_id = $value;
+            // alert ($category_id);
+
+            $.ajax({ 
+                // url:'admin/includes/mobile-cat-fetch-subcateg.php',
+                method:'POST',
+                data: {
+                    category_id : category_id,
+                
+            },
+            success: function (response) {  
+
+                document.getElementById("subcategory").innerHTML=response; 
+                // alert(response);
+            }
+            });
+        }
+
+
+        </script>

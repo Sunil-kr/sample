@@ -1,0 +1,3 @@
+	
+
+	$Product_unique_code = str_replace('#', '-', ( $row['product_code']));

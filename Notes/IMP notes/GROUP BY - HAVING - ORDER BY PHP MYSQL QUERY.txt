@@ -1,0 +1,2 @@
+$query = " SELECT * FROM `orders`  GROUP BY `product_code`  HAVING COUNT(`product_code`) > 1 ORDER BY id DESC LIMIT 10" ;
+$run = mysqli_query($db, $query);

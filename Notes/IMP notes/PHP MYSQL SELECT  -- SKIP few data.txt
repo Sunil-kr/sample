@@ -1,0 +1,1 @@
+SELECT * FROM `main_category` WHERE `parent_category_id` NOT IN ('98765') 

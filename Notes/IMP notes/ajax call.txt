@@ -1,0 +1,32 @@
+   function myFunction_sub()
+    {
+    var selected_option = document.getElementById("new_select").value;
+    // document.getElementById("select_label").style.display = 'none';;
+
+        console.log(selected_option);
+        if(!selected_option )
+        {
+            return false;
+        }
+
+        else
+        {
+
+            $.ajax({
+                url:'includes/get-submenu.php',
+                method:'POST',
+                data: {
+                    // get_option:val
+                    selected_option : selected_option,
+            
+            },
+            success: function (response) {
+
+                document.getElementById("mySelect").setAttribute("disabled", "disabled");
+                document.getElementById("new_select_div").innerHTML=response; 
+                // alert(response);
+                // console.log(response);
+            }
+            });
+
+    }

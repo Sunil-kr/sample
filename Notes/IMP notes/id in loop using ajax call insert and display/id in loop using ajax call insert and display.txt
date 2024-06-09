@@ -1,0 +1,127 @@
+     <input type="number" id="<?php echo $Product_unique_code ?>" min="1" onchange="qty_insert(this.value,'<?php echo $Product_unique_code ?>')">
+
+
+
+
+<script>
+
+  function qty_insert(product_input_value_qty, Product_unique_code_qty)
+    {
+      // var res =  value;
+
+      var product_input_value_qty = product_input_value_qty;
+      var Product_unique_code_qty = Product_unique_code_qty;
+
+      // console.log(product_input_value_qty)
+      // alert(Product_unique_code_qty);
+
+        $.ajax({ 
+        url:'admin/includes/function.php',
+        method:'GET',
+        data: {
+            // get_option:val
+            Product_unique_code_qty : Product_unique_code_qty,
+            product_input_value_qty : product_input_value_qty
+        
+        },
+        success: function (response) {  
+
+            document.getElementById("response").innerHTML=response; 
+            // alert(response);
+            setTimeout(function(){
+              window.location.reload();
+            }, 500);
+        }
+        });
+     }
+
+</script>
+
+
+
+
+
+if($_GET['Product_unique_code_qty'])
+{
+
+    // echo "
+    // <div class='container-fluid col-2 d-flex justify-content-between alert alert-success alert-dismissible fade show fixed-top' id='alert' onshow='myalertFunction()' role='alert'>
+    //     <p class='pt-3'><strong>Quantity </strong> Updated in your Cart Successfully.</p>
+    //     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+    //         <span aria-hidden='true'>&times;</span>
+    //     </button>
+    // </div>
+    // ";
+    
+    session_start();
+    error_reporting(0);
+
+
+    $logged_in_user = $_SESSION['username']; 
+    if($logged_in_user)
+    {
+
+        $Product_unique_code_qty = str_replace(' ', '#', ( $_GET['Product_unique_code_qty']));     
+        $product_input_value_qty = str_replace(' ', '#', ( $_GET['product_input_value_qty']));     
+
+
+            //    echo "
+            //     <div class='container-fluid col-2 d-flex justify-content-between alert alert-success alert-dismissible fade show fixed-top' id='alert' onshow='myalertFunction()' role='alert'>
+            //         <strong>".$logged_in_user." </strong> Updated in your Cart Successfully.
+            //         <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            //             <span aria-hidden='true'>&times;</span>
+            //         </button>
+            //     </div>
+            //     ";
+
+            $query="UPDATE `cart` SET `selected_quantity` ='$product_input_value_qty' WHERE `product_code` = '$Product_unique_code_qty' 
+                    AND `cart_product_owner` = '$logged_in_user'; ";
+        
+
+            $run = mysqli_query($db, $query);
+
+            if($run)
+            {
+
+                echo "
+                <div class='container-fluid col-2 d-flex justify-content-between alert alert-success alert-dismissible fade show fixed-top' id='alert' onshow='myalertFunction()' role='alert'>
+                    <p><strong>Quantity </strong> Updated in your Cart Successfully.</p>
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                ";
+
+
+            }
+            else
+            {
+                echo "
+                <div class='container-fluid col-4  alert alert-danger alert-dismissible fade show fixed-top' id='alert' onshow='myalertFunction()' role='alert'>
+                    <strong>Quantity </strong> Updatation Failed!
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                ";
+            }
+
+    }
+
+    else
+    {
+        echo "
+        <div class='container-fluid col-4  alert alert-danger alert-dismissible fade show fixed-top' id='alert' onshow='myalertFunction()' role='alert'>
+            <strong>Processing </strong> Failed!
+            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+            </button>
+        </div>
+        ";
+    }
+  
+
+
+}
+
+

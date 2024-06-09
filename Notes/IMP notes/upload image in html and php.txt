@@ -1,0 +1,285 @@
+form action="admin/includes/function.php" enctype="multipart/form-data" method="post">
+           
+                        <div class="pt-2">
+                          <input type="file" class="form-control" name="upload_user_image" >
+                        </div>
+
+</form>
+
+
+Note:- enctype="multipart/form-data" is more important in form tag.
+
+
+
+
+ 
+    if(isset($_POST['update_user_profile']))
+        {
+            session_start();
+
+            $logged_in_user = $_SESSION['username'];
+            error_reporting(0);
+            
+            $fullName = mysqli_real_escape_string($db,$_POST['fullName']);
+            $mobile = mysqli_real_escape_string($db,$_POST['mobile']);
+            // $email = mysqli_real_escape_string($db,$_POST['email']);
+            $billing_address = mysqli_real_escape_string($db,$_POST['billing_address']);
+            $shipping_address = mysqli_real_escape_string($db,$_POST['shipping_address']);
+            
+            
+            $msg = "";
+            
+               // echo "Working..";
+                $filename = $_FILES["upload_user_image"]["name"];
+                $tempname = $_FILES["upload_user_image"]["tmp_name"];
+                    $folder = "../uploaded_user_images/".$filename;
+                    
+
+                    // Now let's move the uploaded image into the folder: image
+                    if (move_uploaded_file($tempname, $folder)) 
+                    {
+
+                        $sql = "INSERT INTO `users`(`name`, `mobile`, `billing_address`, `shipping_address`, `profile_img`) VALUES 
+                                ('$fullName','$mobile','$billing_address','$shipping_address','$filename')";
+
+                        // Execute query
+                        $run =  mysqli_query($db, $sql);
+            
+                        if($run)
+                        {
+                            echo "<script>
+                                        alert('E-Book Published Successfully.');
+                                 </script>";
+            
+                        }
+            
+                    }
+                    else
+                    {
+                        $msg = "Failed to upload pdf";
+                        
+                    }
+            
+        
+        
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+##################################################################################################################################
+if(isset($_POST['addProduct']))  
+{
+ 
+     $product_name = mysqli_real_escape_string($db, $_POST['product_name']);
+     $product_unique_code = mysqli_real_escape_string($db, $_POST['product_unique_code']);
+     $hsn_code = mysqli_real_escape_string($db, $_POST['hsn_code']);
+     $product_category_id = mysqli_real_escape_string($db, $_POST['parent_category_id']);
+     
+      $product_color = mysqli_real_escape_string($db, $_POST['color']);
+     $product_material = mysqli_real_escape_string($db, $_POST['material']);
+
+     $product_length = mysqli_real_escape_string($db, $_POST['product_length']);
+     $product_breadth = mysqli_real_escape_string($db, $_POST['product_breadth']);
+     $product_height = mysqli_real_escape_string($db, $_POST['product_height']);
+
+     $package_length = mysqli_real_escape_string($db, $_POST['package_length']);
+     $package_breadth = mysqli_real_escape_string($db, $_POST['package_breadth']);
+     $package_height = mysqli_real_escape_string($db, $_POST['package_height']);
+     $total_weight = mysqli_real_escape_string($db, $_POST['total_weight']);
+     $vol_weight = mysqli_real_escape_string($db, $_POST['vol_weight']);
+     $local_days = mysqli_real_escape_string($db, $_POST['local_days']);
+     $regional_days = mysqli_real_escape_string($db, $_POST['regional_days']);
+      
+     $mrp = mysqli_real_escape_string($db, $_POST['mrp']);
+
+     $product_selling_price = mysqli_real_escape_string($db, $_POST['product_selling_price']);
+     $gst = mysqli_real_escape_string($db, $_POST['gst']);
+     $discount = mysqli_real_escape_string($db, $_POST['discount']);
+     $final_selling_price = mysqli_real_escape_string($db, $_POST['final_selling_price']);
+     $alert_quantity = mysqli_real_escape_string($db, $_POST['alert_quantity']);
+     $available_quantity = mysqli_real_escape_string($db, $_POST['available_quantity']);
+     $product_unit = mysqli_real_escape_string($db, $_POST['product_unit']);
+     $product_description = mysqli_real_escape_string($db, $_POST['product_description']);
+     $product_A_plus_content = mysqli_real_escape_string($db, $_POST['product_A_plus_content']);
+
+
+                                                            
+     $query = "INSERT INTO `products`( `product_name`, `product_code`, `hsn_code`, `product_category`, `color`, `material`,  `product_length`, 
+     `product_breadth`, `product_height`, `package_length`, `package_breadth`, `package_height`, `total_weight`, 
+     `volumetric_weight`, `days_deliver_in_local`, `days_deliver_in_regional`, `days_deliver_in_national`,
+     `mrp`, `product_selling_price`, `gst`, `discount`, `final_selling_price`, `available_quantity`, `unit`, `alert_quantity`, 
+     `product_description`, `product_A_plus_content`) VALUES 
+     ('$product_name','$product_unique_code','$hsn_code','$product_category_id', '$product_color', '$product_material', '$product_length','$product_breadth','$product_height',
+     '$package_length ', '$package_breadth','$package_height','$total_weight', '$vol_weight', '$local_days', '$regional_days', '$national_days',
+     '$mrp','$product_selling_price','$gst','$discount','$final_selling_price',
+     '$available_quantity','$product_unit','$alert_quantity','$product_description','$product_A_plus_content')";
+
+
+     $run=mysqli_query($db,$query);
+     $product_id = mysqli_insert_id($db);     // this method takes the id of last query
+
+
+        // Configure upload directory and allowed file types
+        $upload_dir = "../uploaded_images/";
+        $allowed_types = array('jpg', 'png', 'jpeg', 'gif');
+            
+        // Define maxsize for files i.e 2MB
+        $maxsize = 2 * 1024 * 1024;
+
+        // Checks if user sent an empty form
+        if(!empty(array_filter($_FILES['files']['name']))) {
+
+            // Loop through each file in files[] array
+            foreach ($_FILES['files']['tmp_name'] as $key => $value) {
+                    
+                $file_tmpname = $_FILES['files']['tmp_name'][$key];
+                $file_name = $_FILES['files']['name'][$key];
+                $file_size = $_FILES['files']['size'][$key];
+                $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+
+                // Set upload file path
+                $filepath = $upload_dir.$file_name;
+
+                // Check file type is allowed or not
+                if(in_array(strtolower($file_ext), $allowed_types)) {
+
+                    // Verify file size - 2MB max
+                    if ($file_size > $maxsize)  
+                    {        
+                        // echo "Error: File size is larger than the allowed limit.";
+                        echo"<script>
+                                alert('File size is larger than the allowed limit..');
+                                window.location.href = '../index.php?all-product';
+                            </script>";
+                    }
+                    else
+                    {
+
+
+                        // If file with name already exist then append time in
+                        // front of name of the file to avoid overwriting of file
+                        if(file_exists($filepath)) 
+                        {
+                            $filepath = $upload_dir.time().$file_name;
+
+                            $file_name = time().$file_name;
+                        
+                            if( move_uploaded_file($file_tmpname, $filepath)) 
+                            {
+                                                                 
+                                // ---------------------------------------------
+                                    // IMAGE IN PRODUCT TABLE
+                                // ---------------------------------------------- 
+                                
+                                // echo "{$file_name} successfully uploaded <br />";
+                                $sql = "INSERT INTO `images`( `image`, `product_id`, `product_code` ) VALUES  ('$file_name', '$product_id','$product_unique_code')";
+
+                                $run = mysqli_query($db, $sql);
+
+                                
+                                if($run)
+                                {
+                                    // header('location:../index.php?all-staff');
+                                    echo"<script>
+                                            alert('Product added successfully.');
+                                            window.location.href = '../index.php?all-product';
+                                        </script>";
+                            
+                                }
+                    
+                                else
+                                {
+                                    echo"<script>
+                                            alert('Processing failed!');
+                                            window.location.href = '../index.php?all-product';
+                                        </script>";
+                                }
+                                
+
+                            }
+
+                            else 
+                            {                    
+                                echo "Error uploading {$file_name} <br />";
+                            }
+                        }
+
+                        else
+                        {
+                            if( move_uploaded_file($file_tmpname, $filepath)) 
+                            {
+                                                                 
+                                // ---------------------------------------------
+                                    // IMAGE IN PRODUCT TABLE
+                                // ---------------------------------------------- 
+                                
+                                // echo "{$file_name} successfully uploaded <br />";
+                                $sql = "INSERT INTO `images`( `image`, `product_id`, `product_code` ) VALUES  ('$file_name', '$product_id','$product_unique_code')";
+
+                                $run = mysqli_query($db, $sql);
+
+                                
+                                if($run)
+                                {
+                                    // header('location:../index.php?all-staff');
+                                    echo"<script>
+                                            alert('Product added successfully.');
+                                            window.location.href = '../index.php?all-product';
+                                        </script>";
+                            
+                                }
+                    
+                                else
+                                {
+                                    echo"<script>
+                                            alert('Processing failed!');
+                                            window.location.href = '../index.php?all-product';
+                                        </script>";
+                                }
+                                
+
+                            }
+
+                            else 
+                            {                    
+                                echo "Error uploading {$file_name} <br />";
+                            }
+                            
+                        }
+
+                        
+
+                    }
+                }
+
+                else {
+                        
+                    // If file extension not valid
+                    echo "Error uploading {$file_name} ";
+                    echo "({$file_ext} file type is not allowed)<br / >";
+                }
+            }
+        }
+        else {
+                
+            // If no files selected
+            echo "No files selected.";
+        }
+
+
+	
+
+}

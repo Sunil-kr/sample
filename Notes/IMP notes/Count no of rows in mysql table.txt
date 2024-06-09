@@ -1,0 +1,16 @@
+        
+        $query = "SELECT * FROM `cms_offer_banner1` ";
+        
+        $res = mysqli_query($db, $query);
+
+        $num = mysqli_num_rows($res);
+        
+
+        if($num == 1)
+        {
+            echo "<script>
+                        alert('Only 1 Banner is allowed for this area.');
+                        window.history.back();
+                        
+                </script>";
+        }

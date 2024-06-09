@@ -1,0 +1,37 @@
+
+
+
+
+<style>
+  .image{
+    display: inline;
+    position: relative;
+
+  }
+
+  .bi-x-circle-fill{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 21px;
+    width: 21px;
+  }
+
+</style>
+
+
+
+
+        <div class="col-md-12 container pt-3">
+          <div class="row">
+            <div class="col-md-2 image col-sm-12 col-6 p-2 mb-3 text-center shadow-sm">
+                  <i class="bi bi-x-circle-fill"></i>
+
+                  <img src="uploaded_images/<?= $row['image']?>" id="product-img" class="container-fluid" style="" alt="<?php
+                  $alt= str_replace(' ', '-', ( $res['image'])); echo$alt?>">      <!--  Important....-->       
+                  <br><sub class="fw-bold p-2"><?= $row['image']?> <sub>  
+              </div>
+        
+             
+            </div>
+        </div>

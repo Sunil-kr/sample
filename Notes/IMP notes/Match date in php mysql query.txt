@@ -1,0 +1,10 @@
+             // date_default_timezone_set('America/Los_Angeles');
+                  date_default_timezone_set('Asia/kolkata');
+                    
+                  echo $current_time =   date('Y-m-d');                  
+
+                  $query="SELECT * FROM `orders` WHERE date(`created_at`) = '$current_time' ";
+
+                  $run=mysqli_query($db,$query);
+                              
+                  $num = mysqli_num_rows($run);
