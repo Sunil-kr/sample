@@ -1,0 +1,4 @@
+[13-Feb-2023 06:39:02 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/j5gd8xu52u0g/public_html/vinayak/admin/includes/get-submenu.php on line 29
+[13-Feb-2023 06:39:02 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/j5gd8xu52u0g/public_html/vinayak/admin/includes/get-submenu.php on line 78
+[13-Feb-2023 06:42:05 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/j5gd8xu52u0g/public_html/vinayak/admin/includes/get-submenu.php on line 29
+[13-Feb-2023 06:42:05 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/j5gd8xu52u0g/public_html/vinayak/admin/includes/get-submenu.php on line 78
